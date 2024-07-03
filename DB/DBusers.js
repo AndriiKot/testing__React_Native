@@ -47,3 +47,17 @@ export async function insert(dbName, comment) {
       console.log(`Error create insert: ${error.message}`);
     };
 }
+
+export async function deleteDB(dbName) {
+  const dbDir = FileSystem.documentDirectory + "SQLite/";
+  const dirInfo = await FileSystem.getInfoAsync(dbDir + dbName);
+  if (dirInfo.exists) {
+    await FileSystem.deleteAsync(dbDir + dbName, { idempotent: true });
+  }
+  db.transaction((tx) => {
+    tx.executeSql(`DROP TABLE users`);
+  }),
+    (error) => {
+      console.log(`Error create delete: ${error.message}`);
+    };
+}
