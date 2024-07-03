@@ -1,3 +1,3 @@
 ﻿expect const Configuration = {
-    dbName: 'users',
+    dbName: 'users.sqlite',
 }
