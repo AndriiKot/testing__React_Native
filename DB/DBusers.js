@@ -13,8 +13,11 @@ export const checkExistsDB = async (dbName) => {
 export async function createDB(dbName) {
   const db = await SQLite.openDatabase(dbName);
   db.transaction((tx) => {
-      tx.executeSql(
-          
-      )
-  })
+    tx.executeSql(`CREATE TABLE "users" (   
+            "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            "comment" TEXT`);
+  }),
+    (error) => {
+      console.log(error);
+    };
 }
