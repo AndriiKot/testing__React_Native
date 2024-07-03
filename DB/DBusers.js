@@ -12,4 +12,9 @@ export const checkExistsDB = async (dbName) => {
 
 export async function createDB(dbName) {
   const db = await SQLite.openDatabase(dbName);
+  db.transaction((tx) => {
+      tx.executeSql(
+          
+      )
+  })
 }
