@@ -5,7 +5,7 @@
   "scripts": {
     "mistcss:dev": "mistcss ./components --watch",
     "mistcss:build": "mistcss ./components",
-    "start": "expo start",
+    "start": "concurrently \"expo start\" \"mistcss:dev\"",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
