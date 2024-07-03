@@ -10,3 +10,8 @@ export const checkExistsDB = async (dbName) => {
     exists = !dirInfo.exists ? false : true;
     return exists;
 }
+
+export async function createDB(dbName) {
+    const db =  await SQLite.openDatabase(dbName);
+
+}
