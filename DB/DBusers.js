@@ -18,6 +18,18 @@ export async function createDB(dbName) {
             "comment" TEXT`);
   }),
     (error) => {
-      console.log(error);
+      console.log(`Error create: ${error.message}`);
+    };
+}
+
+export async function select(dbName) {
+  const db = await SQLite.openDatabase(dbName);
+  db.transaction((tx) => {
+    tx.executeSql(`SELECT * FROM users`, [], (_, { rows }) => {
+      console.log(JSON.stringify(rows));
+    });
+  }),
+    (error) => {
+      console.log(`Error create select: ${error.message}`);
     };
 }
