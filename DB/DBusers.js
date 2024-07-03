@@ -61,3 +61,14 @@ export async function deleteDB(dbName) {
       console.log(`Error create delete: ${error.message}`);
     };
 }
+
+export async function updateDB(dbName, id, comment = "") {
+  const db = await SQLite.openDatabase(dbName);
+  db.transaction((tx) => {
+    tx.executeSql(`UPDATE users SET comment = ? WHERE id = ?`, [comment, id]);
+  }),
+  
+    (error) => {
+      console.log(`Error create update: ${error.message}`);
+    };
+}
