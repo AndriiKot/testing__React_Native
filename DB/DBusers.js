@@ -33,3 +33,17 @@ export async function select(dbName) {
       console.log(`Error create select: ${error.message}`);
     };
 }
+
+export async function insert(dbName, comment) {
+  const dirInfo = await checkExistsDB(dbName);
+  if (!dirInfo) {
+    await createDB(dbName);
+  }
+  const db = await SQLite.openDatabase(dbName);
+  db.transaction((tx) => {
+    tx.executeSql(`INSERT INTO users (comment) VALUES (?)`, [comment]);
+  }),
+    (error) => {
+      console.log(`Error create insert: ${error.message}`);
+    };
+}
