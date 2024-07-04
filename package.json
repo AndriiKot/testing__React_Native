@@ -12,7 +12,7 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "prepare": "husky"
+    "prepare": "node .husky/install.mjs"
   },
   "jest": {
     "preset": "jest-expo"
